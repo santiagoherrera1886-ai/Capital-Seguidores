@@ -25,6 +25,47 @@
 @media(max-width:900px){.app{display:block}.side{position:fixed;left:0;top:0;transform:translateX(-105%);transition:transform .2s;max-width:278px;width:82vw;box-shadow:var(--shadow)}body.mobile-open .side{transform:translateX(0)}.mobile-shade{display:block;position:fixed;inset:0;background:rgba(10,42,54,.5);z-index:29;visibility:hidden;opacity:0;transition:opacity .2s}body.mobile-open .mobile-shade{visibility:visible;opacity:1}.menu{display:inline-flex}.hero{grid-template-columns:1fr .75fr}.hero h1{font-size:48px}.hero-copy{padding:40px 0 35px 35px}.main{padding:0 19px 60px}.topbar{height:70px}.posts{grid-template-columns:repeat(2,minmax(0,1fr))}.index-layout,.plan{grid-template-columns:1fr}.strategy{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.hero{grid-template-columns:1fr;min-height:540px}.hero-copy{padding:33px 27px 12px}.hero h1{font-size:43px}.hero p{font-size:12px}.hero-visual{height:220px}.hero-visual:before{background:linear-gradient(180deg,#155779,transparent 55%)}.hero-foot{font-size:9px}.top-date{display:none}.topbar small{font-size:9px}.filterbar{gap:12px;padding:14px}.filterbox{min-width:125px}.filter-comment{max-width:none}.section{margin-top:33px}.section-heading{display:block}.kpis{gap:10px}.kpi{padding:18px 16px;min-height:138px}.kpi strong{font-size:28px}.insight{grid-template-columns:1fr;padding:20px}.insight-icon{display:none}.insight h3{font-size:22px}.insight-side{grid-column:1}.posts,.strategy{grid-template-columns:1fr}.q-left{grid-template-columns:1fr}.rank-row{grid-template-columns:minmax(0,.8fr) minmax(0,1fr) 55px;gap:9px}.rank-row .name{font-size:10px}.rank-row .value{font-size:11px}.chart-card,.detail-card,.rank-card,.index-card{padding:18px}.plan{padding:16px}.plan-results{grid-template-columns:1fr 1fr}.plan-result strong{font-size:25px}.bottom{display:block}.btn{padding:9px 11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+/* CAPITAL / EDITORIAL 2026 — EAN-inspired art direction, own brand expression */
+:root{--ink:#173947;--ink2:#28556a;--muted:#70848a;--cyan:#03acc3;--cyan2:#8de5e5;--blue:#124c6b;--paper:#f5f6f0;--white:#ffffff;--line:#dde5de;--mint:#e9f7f2;--sand:#f5eee0;--shadow:0 24px 62px rgba(25,57,64,.065);--r:23px}
+body{background:radial-gradient(ellipse 75% 34% at 100% 0%,#e5f2ed 0%,transparent 72%),#f5f6f0}
+.side{background:#f9faf6;border-right:1px solid #dfe8e1}
+.brand{padding-top:16px}
+.brand-mark{font-size:31px;letter-spacing:-.095em}
+.brand-label{letter-spacing:.31em}
+.nav a{border-radius:13px}
+.nav a:hover,.nav a.active{background:#dff0e9;color:#124f61}
+.side-foot{background:#e8f3ed}
+.topbar small{letter-spacing:.18em}
+.hero{min-height:500px;border-radius:30px;background:#14445c;box-shadow:0 18px 38px rgba(18,59,72,.13)}
+.hero-copy{padding:64px 0 51px 56px}
+.hero h1{font-size:clamp(48px,5.4vw,82px);letter-spacing:-.07em}
+.hero h1 em{color:#a9efe2}
+.hero-copy p{font-size:15px;line-height:1.8}
+.hero-visual:before{background:linear-gradient(90deg,#14445c 0%,rgba(20,68,92,.22) 60%,rgba(20,68,92,0))}
+.hero-visual img{filter:saturate(.82) contrast(1.04)}
+.hero-foot{background:rgba(255,255,255,.92);color:#153f50;border-radius:8px;letter-spacing:.12em}
+.hero:after{content:"CAPITAL / INTELLIGENCE";position:absolute;left:55px;bottom:22px;font-size:9px;letter-spacing:.26em;font-weight:800;color:#b2e4e0;z-index:4}
+.hero-copy{padding-bottom:76px}
+.section{margin-top:56px}
+.section-heading h2{font-size:clamp(34px,3.9vw,55px);letter-spacing:-.065em}
+.section-tag{background:#dcefe7;color:#256777;border-radius:30px}
+.filterbar{box-shadow:var(--shadow);border-radius:21px}
+.kpi,.card,.insight,.filterbar{border-color:#dce6e0}
+.kpi{border-radius:20px;box-shadow:0 7px 23px rgba(30,65,60,.03)}
+.kpi.highlight{background:#dff4ed}
+.btn.cta{background:#007e93}
+.tab.active{background:#dff2e9}
+.chart-hint{background:#edf6ef}
+.bottom{border-top:1px solid #dce6e0}
+.reader-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:16px}
+.reader-step{padding:19px 20px;border:1px solid #d9e6de;border-radius:17px;background:#fff}
+.reader-step small{font-size:10px;color:#01889c;font-weight:800;letter-spacing:.12em}
+.reader-step b{display:block;font-size:16px;margin:7px 0 5px;letter-spacing:-.025em}
+.reader-step p{font-size:12px;line-height:1.6;margin:0}
+.capital-stamp{display:inline-flex;gap:8px;align-items:center;border-radius:99px;background:#e6f5ee;color:#146377;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:.1em;margin-bottom:18px}
+.capital-stamp:before{content:"";width:7px;height:7px;border-radius:50%;background:#00a7ab}
+@media(max-width:900px){.reader-guide{grid-template-columns:1fr}.hero{min-height:0}.hero-copy{padding:36px 30px 65px}.hero:after{left:30px;bottom:17px}.hero h1{font-size:clamp(42px,9vw,66px)}}
 </style>
 </head>
 <body>
@@ -49,18 +90,18 @@
 <main class="main">
 <div class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="btn menu" id="menu" aria-label="Abrir menú">☰</button><small>INTELLIGENCE LAB <span style="color:#b8c9ce">/</span> REDES SOCIALES</small></div><div class="top-actions"><span class="top-date">CORTE 08 OCT 2026</span><button class="btn" id="csv">↓ Descargar CSV</button></div></div>
 <section class="hero" id="inicio">
-<div class="hero-copy"><div class="eyebrow light">CONSTRUCTORA CAPITAL · BENCHMARK DIGITAL</div><h1>No es publicar más.<br><em>Es conectar mejor.</em></h1><p>Entiende qué tan bien está funcionando Capital frente a otras constructoras en Bogotá y Medellín. Sin fórmulas difíciles. Con datos, contexto y decisiones concretas.</p><span class="hero-pill"><i></i> Datos observados · Ene – 08 Oct 2026</span></div>
+<div class="hero-copy"><div class="eyebrow light">CAPITAL / SOCIAL INTELLIGENCE — 2026</div><h1>No es publicar más.<br><em>Es conectar mejor.</em></h1><p>Entiende qué tan bien está funcionando Capital frente a otras constructoras en Bogotá y Medellín. Sin fórmulas difíciles. Con datos, contexto y decisiones concretas.</p><span class="hero-pill"><i></i> Datos observados · Ene – 08 Oct 2026</span></div>
 <div class="hero-visual"><img src="https://www.constructoracapital.com/web_datas/1739462119_bog-02-700-x-700.png" alt="Campaña de Constructora Capital con viviendas y zonas verdes" loading="eager"><div class="hero-orb"></div><div class="hero-foot">TU VIDA, NUESTRO PROYECTO ↗</div></div>
 </section>
-<section class="section" aria-label="Filtros globales">
+<section class="section" aria-label="Filtros globales"><span class="capital-stamp">GUÍA DE INTELIGENCIA DIGITAL · EDICIÓN 2026</span>
 <div class="filterbar"><div class="filterbox"><label for="ciudad">01 / Ciudad del benchmark</label><select id="ciudad"><option value="Bogotá">Bogotá + Sabana</option><option value="Medellín">Medellín + Valle de Aburrá</option></select></div><div class="filterbox"><label for="red">02 / Plataforma</label><select id="red"><option value="INSTAGRAM">Instagram</option><option value="FACEBOOK">Facebook</option><option value="TIKTOK">TikTok</option></select></div><div class="filter-comment"><span class="live"><i></i> COMPARATIVO ACTIVO</span>Todos los gráficos y explicaciones cambian con estos filtros.</div><button class="btn" id="explicar">ⓘ ¿Cómo se lee?</button></div>
-<div class="kpis" id="kpis"></div>
+<div class="reader-guide" aria-label="Cómo leer el estudio"><div class="reader-step"><small>01 / OBSERVA</small><b>¿Qué dicen los datos?</b><p>Comparamos a Capital con otras constructoras usando los mismos indicadores.</p></div><div class="reader-step"><small>02 / ENTIENDE</small><b>¿Por qué importa?</b><p>Traducimos seguidores, frecuencia y conversación a ejemplos sin tecnicismos.</p></div><div class="reader-step"><small>03 / DECIDE</small><b>¿Qué haríamos distinto?</b><p>Convertimos los hallazgos en ideas de contenido y escenarios para probar.</p></div></div><div class="kpis" id="kpis"></div>
 <div class="insight" id="insight"></div>
 </section>
 <section class="section" id="comparativo"><div class="section-heading"><div><div class="section-tag">02 / COMPETENCIA</div><h2>¿Dónde está Capital<br>frente a los demás?</h2><p>No basta con contar seguidores. Aquí cruzamos cuánto publica cada constructora con la reacción promedio que consigue. El tamaño de cada punto indica sus seguidores.</p></div></div>
 <div class="dual"><div class="card chart-card"><div class="plothead"><div><h3>Mapa de desempeño</h3><span class="tiny">Más a la derecha = más publicaciones. Más arriba = más interacciones por post.</span></div><div class="legend"><span><b></b> Capital</span><span><b class="peer"></b> Competencia</span></div></div><div id="scatter-container"><svg id="scatter" viewBox="0 0 850 470" role="img"></svg></div><div class="chart-hint"><b>Truco para leerlo:</b> la zona superior derecha indica más frecuencia y más interacciones que la mediana del grupo. No significa necesariamente más ventas.</div></div>
 <div class="card detail-card" id="detail"></div></div>
-<div class="card rank-card" style="margin-top:17px"><div class="rank-toolbar"><div><h3>El ranking, sin complicaciones</h3><p>Compara todas las marcas con la misma métrica. Capital se resalta en turquesa.</p></div><div class="tabs" id="rank-tabs"><button class="tab active" data-metric="Interacción Promedio">Interacción/post</button><button class="tab" data-metric="Nº Post Prom. Mensual">Posts/mes</button><button class="tab" data-metric="Seguidores">Seguidores</button><button class="tab" data-metric="Q-Index">Q-Index</button></div></div><div id="rank-list" class="rank-list"></div><p class="rank-note" id="rank-note"></p></div>
+<div class="card rank-card" style="margin-top:17px"><div class="rank-toolbar"><div><h3>El ranking, sin complicaciones</h3><p>Compara todas las marcas con la misma métrica. Capital se resalta en el color principal de marca.</p></div><div class="tabs" id="rank-tabs"><button class="tab active" data-metric="Interacción Promedio">Interacción/post</button><button class="tab" data-metric="Nº Post Prom. Mensual">Posts/mes</button><button class="tab" data-metric="Seguidores">Seguidores</button><button class="tab" data-metric="Q-Index">Q-Index</button></div></div><div id="rank-list" class="rank-list"></div><p class="rank-note" id="rank-note"></p></div>
 </section>
 <section class="section" id="calidad"><div class="section-heading"><div><div class="section-tag">03 / PROFUNDIDAD</div><h2>¿Likes o conversación<br>de verdad?</h2><p>El Q-Index es una calificación calculada en tu archivo (de 0 a 100): combina presencia de tipos de reacción con la profundidad de la conversación. No es una métrica oficial de las plataformas.</p></div></div><div class="index-layout"><div class="card index-card" id="q-main"></div><div class="card index-card index-right" id="q-interpret"></div></div></section>
 <section class="section" id="contenidos"><div class="section-heading"><div><div class="section-tag">04 / CREATIVIDAD</div><h2>Los contenidos que<br>sí hicieron ruido.</h2><p>Estas publicaciones reales de Capital concentran las mayores interacciones del periodo. Puedes abrir cada pieza original y entender cuál fue el tema que funcionó.</p></div><span class="live"><i></i> TOP 5 SEGÚN INTERACCIONES</span></div><div class="posts" id="posts"></div></section>
