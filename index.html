@@ -67,6 +67,7 @@ body{background:radial-gradient(ellipse 75% 34% at 100% 0%,#e5f2ed 0%,transparen
 .capital-stamp:before{content:"";width:7px;height:7px;border-radius:50%;background:#00a7ab}
 @media(max-width:900px){.reader-guide{grid-template-columns:1fr}.hero{min-height:0}.hero-copy{padding:36px 30px 65px}.hero:after{left:30px;bottom:17px}.hero h1{font-size:clamp(42px,9vw,66px)}}
 </style>
+<link rel="stylesheet" href="./gallery.css">
 </head>
 <body>
 <div class="mobile-shade" id="shade"></div>
@@ -103,7 +104,22 @@ body{background:radial-gradient(ellipse 75% 34% at 100% 0%,#e5f2ed 0%,transparen
 <div class="card rank-card" style="margin-top:17px"><div class="rank-toolbar"><div><h3>El ranking, sin complicaciones</h3><p>Compara todas las marcas con la misma métrica. Capital se resalta en el color principal de marca.</p></div><div class="tabs" id="rank-tabs"><button class="tab active" data-metric="Interacción Promedio">Interacción/post</button><button class="tab" data-metric="Nº Post Prom. Mensual">Posts/mes</button><button class="tab" data-metric="Seguidores">Seguidores</button><button class="tab" data-metric="Q-Index">Q-Index</button></div></div><div id="rank-list" class="rank-list"></div><p class="rank-note" id="rank-note"></p></div>
 </section>
 <section class="section" id="calidad"><div class="section-heading"><div><div class="section-tag">03 / PROFUNDIDAD</div><h2>¿Likes o conversación<br>de verdad?</h2><p>El Q-Index es una calificación calculada en tu archivo (de 0 a 100): combina presencia de tipos de reacción con la profundidad de la conversación. No es una métrica oficial de las plataformas.</p></div></div><div class="index-layout"><div class="card index-card" id="q-main"></div><div class="card index-card index-right" id="q-interpret"></div></div></section>
-<section class="section" id="contenidos"><div class="section-heading"><div><div class="section-tag">04 / CREATIVIDAD</div><h2>Los contenidos que<br>sí hicieron ruido.</h2><p>Estas publicaciones reales de Capital concentran las mayores interacciones del periodo. Puedes abrir cada pieza original y entender cuál fue el tema que funcionó.</p></div><span class="live"><i></i> TOP 5 SEGÚN INTERACCIONES</span></div><div class="posts" id="posts"></div></section>
+<section class="section" id="contenidos">
+<div class="section-heading"><div><div class="section-tag">04 / CREATIVIDAD Y COMPETENCIA</div><h2>¿Qué publican las<br>otras constructoras?</h2><p>Compara contenidos reales de Capital y sus competidores. Mira las imágenes originales, los temas que trataron y las interacciones que consiguieron. Puedes abrir cada post en su red social.</p></div><span class="live"><i></i> PUBLICACIONES DEL ARCHIVO ORIGINAL</span></div>
+<div class="capital-gallery" id="capital-gallery">
+ <div class="gallery-controls">
+  <div class="gallery-tabs" id="gallery-tabs" role="group" aria-label="Seleccionar qué publicaciones se muestran">
+   <button type="button" data-gallery-scope="competitors" aria-pressed="true">La competencia</button>
+   <button type="button" data-gallery-scope="capital" aria-pressed="false">Solo Capital</button>
+   <button type="button" data-gallery-scope="all" aria-pressed="false">Todas las marcas</button>
+  </div>
+  <div class="gallery-filter"><label for="gallery-brand">Constructora</label><select id="gallery-brand" aria-label="Filtrar por constructora"></select></div>
+ </div>
+ <div class="gallery-insight" id="gallery-insight" aria-live="polite"></div>
+ <div class="gallery-meta"><b>PUBLICACIONES MÁS DESTACADAS POR MARCA</b><span id="gallery-count"></span></div>
+ <div class="posts" id="gallery-cards" aria-live="polite"></div>
+ <div class="gallery-bottom"><button class="btn" id="gallery-more" type="button" hidden>Ver los 5 posts por marca ↓</button><p>Datos observados de enero al 8 de octubre de 2026. Las interacciones no equivalen a ventas.</p></div>
+</div></section>
 <section class="section" id="decisiones"><div class="section-heading"><div><div class="section-tag">05 / INTELIGENCIA APLICADA</div><h2>Y entonces...<br>¿qué debería hacer Capital?</h2><p>Dejamos de mirar solo números y los convertimos en acciones editoriales. Son recomendaciones, no resultados medidos ni promesas de crecimiento.</p></div></div><div class="strategy" id="strategies"></div></section>
 <section class="section" id="datos"><div class="section-heading"><div><div class="section-tag">06 / TRANSPARENCIA</div><h2>Todos los datos.<br>Sin letra pequeña.</h2><p>El mismo conjunto que alimenta las visualizaciones. El análisis se limita a lo que contiene el HTML facilitado.</p></div><button class="btn" id="csv2">↓ Descargar CSV</button></div><div class="table-wrap"><table><thead><tr><th>Constructora</th><th>Zona</th><th>Seguidores</th><th>Publicaciones</th><th>Posts/mes</th><th>Interacciones/post</th><th>Q-Index</th><th>Cobertura Q</th></tr></thead><tbody id="table-body"></tbody></table></div><details class="card disclosure" style="margin-top:17px"><summary>Cómo se calcularon los indicadores y qué limitaciones tienen</summary><div id="method"></div></details></section>
 <footer class="bottom"><span>CAPITAL SOCIAL INTELLIGENCE · 2026<br>Fuente: Fanpage Karma / Archivo HTML entregado · Corte 08.10.2026</span><span>Hecho para entender, comparar y decidir ✦</span></footer>
@@ -182,6 +198,7 @@ function renderDetail(){
  };
  var cov=a['% posts evaluados en Q-Index'];
  $('detail').innerHTML='<span class="pill">'+(isCap?'MARCA CENTRAL':'COMPARADOR DEL GRUPO')+'</span><h3>'+esc(a.Competidor)+'</h3><span class="zone">Posición: <strong class="zone-label">'+esc(z)+'</strong></span><p style="font-size:12px;line-height:1.65;margin:0">'+esc(descriptor[z]||'Consulta sus indicadores para comparar.')+'</p><div class="detail-stats"><div><span>Seguidores</span><b>'+fmt(a.Seguidores)+'</b></div><div><span>Posts por mes</span><b>'+dec(a['Nº Post Prom. Mensual'])+'</b></div><div><span>Interacción/post</span><b>'+dec(a['Interacción Promedio'])+'</b></div><div><span>Q-Index / 100</span><b>'+dec(a['Q-Index'])+'</b></div></div><div class="detail-guide"><strong>Explicación sencilla</strong>La línea vertical es la mediana de '+dec(g['Mediana posts/mes'])+' posts/mes y la horizontal, '+dec(g['Mediana interacción por post'])+' interacciones/post. '+(cov<100?'Atención: el Q-Index solo cubre '+pct(cov)+' de sus publicaciones.':'El Q-Index cubre el '+pct(cov)+' de sus publicaciones.')+'</div>';
+ $('detail').insertAdjacentHTML('beforeend','<button type="button" class="btn detail-to-posts" data-show-brand="'+esc(a.Competidor)+'">Ver publicaciones de esta marca ↗</button>');
 }
 function renderRanking(){
  $('rank-tabs').querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-metric')===state.metric);b.setAttribute('aria-pressed',b.getAttribute('data-metric')===state.metric?'true':'false');});
@@ -197,10 +214,7 @@ function renderQ(){
  $('q-interpret').innerHTML='<div class="section-tag">QUÉ SIGNIFICA PARA EL NEGOCIO</div><h3>Una nota no cuenta toda la historia.</h3><p>Capital tiene <strong>'+dec(q)+'/100</strong> en '+state.net+'. '+(diff>=0?'Supera la nota de las demás marcas de este grupo, según este índice.':'La mejor nota competidora es de '+esc(best.Competidor)+' ('+dec(best['Q-Index'])+').')+' Eso no demuestra más ventas, clientes o intención de compra.</p><div class="insight-check"><span class="check">✓</span><div><b>Observa la interacción, no solo la cantidad.</b><span>Dos publicaciones con 500 likes pueden generar conversaciones muy distintas.</span></div></div><div class="insight-check"><span class="check">✓</span><div><b>Revisa la cobertura de los datos.</b><span>Algunas cuentas tienen likes ocultos; su índice puede cubrir solo parte de los posts.</span></div></div><div class="insight-check"><span class="check">✓</span><div><b>Conecta esto con negocio.</b><span>Complementa con visitas, leads cualificados y ventas. Esos resultados no vienen en el archivo.</span></div></div>';
 }
 function topic(text){var t=text.toLowerCase();if(t.includes('garant'))return 'Garantías y postventa';if(t.includes('crédito')||t.includes('capacidad de pago')||t.includes('separar vivienda')||t.includes('precio'))return 'Educación al comprador';if(t.includes('propietar')||t.includes('historia'))return 'Historias de clientes';return 'Proyectos y estilo de vida';}
-function renderPosts(){
- var list=capital()['Posts destacados'].slice(0,5);
- $('posts').innerHTML=list.map(function(p,i){var excerpt=p.Extracto||'',headline=topic(excerpt);return '<article class="card post-card"><div class="post-img">'+(p.Imagen?'<img src="'+esc(p.Imagen)+'" alt="Miniatura original del contenido de Capital" loading="lazy">':'')+'<span class="post-num">#'+(i+1)+' · '+esc(state.net)+'</span></div><div class="post-body"><span class="post-topic">'+esc(headline)+'</span><h3>'+esc(headline)+'</h3><p>'+esc(excerpt)+'</p><div class="post-bottom"><div><b>'+fmt(p.Interacciones)+'</b><small>interacciones · '+esc(p.Fecha)+'</small></div><a href="'+esc(p.Enlace)+'" target="_blank" rel="noopener noreferrer">Ver publicación ↗</a></div></div></article>';}).join('');
-}
+function renderPosts(){ /* The comparator gallery runs in gallery.js */ }
 function renderStrategies(){
  var share=Number(capital()['Top 3 posts: % de las interacciones']);
  var high=share>=50;
@@ -238,5 +252,6 @@ $('nav').querySelectorAll('a').forEach(function(a){a.addEventListener('click',fu
 render();
 })();
 </script>
+<script src="./gallery.js"></script>
 </body>
 </html>
