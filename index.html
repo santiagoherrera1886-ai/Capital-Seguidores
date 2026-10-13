@@ -82,8 +82,7 @@ body{background:radial-gradient(ellipse 75% 34% at 100% 0%,#e5f2ed 0%,transparen
 <a href="#calidad"><span class="number">03</span> Calidad de interacción</a>
 <a href="#contenidos"><span class="number">04</span> Contenidos ganadores</a>
 <a href="#decisiones"><span class="number">05</span> Qué haría Capital</a>
-<a href="#simulador"><span class="number">06</span> Simulador sencillo</a>
-<a href="#datos"><span class="number">07</span> Datos y método</a>
+<a href="#datos"><span class="number">06</span> Datos y método</a>
 </nav><div class="side-spacer"></div>
 <div class="side-foot"><div class="mini">✦</div><b>Datos convertidos en decisiones.</b><p>Un análisis claro, incluso si nunca has trabajado con métricas de redes sociales.</p></div>
 </aside>
@@ -106,8 +105,7 @@ body{background:radial-gradient(ellipse 75% 34% at 100% 0%,#e5f2ed 0%,transparen
 <section class="section" id="calidad"><div class="section-heading"><div><div class="section-tag">03 / PROFUNDIDAD</div><h2>¿Likes o conversación<br>de verdad?</h2><p>El Q-Index es una calificación calculada en tu archivo (de 0 a 100): combina presencia de tipos de reacción con la profundidad de la conversación. No es una métrica oficial de las plataformas.</p></div></div><div class="index-layout"><div class="card index-card" id="q-main"></div><div class="card index-card index-right" id="q-interpret"></div></div></section>
 <section class="section" id="contenidos"><div class="section-heading"><div><div class="section-tag">04 / CREATIVIDAD</div><h2>Los contenidos que<br>sí hicieron ruido.</h2><p>Estas publicaciones reales de Capital concentran las mayores interacciones del periodo. Puedes abrir cada pieza original y entender cuál fue el tema que funcionó.</p></div><span class="live"><i></i> TOP 5 SEGÚN INTERACCIONES</span></div><div class="posts" id="posts"></div></section>
 <section class="section" id="decisiones"><div class="section-heading"><div><div class="section-tag">05 / INTELIGENCIA APLICADA</div><h2>Y entonces...<br>¿qué debería hacer Capital?</h2><p>Dejamos de mirar solo números y los convertimos en acciones editoriales. Son recomendaciones, no resultados medidos ni promesas de crecimiento.</p></div></div><div class="strategy" id="strategies"></div></section>
-<section class="section" id="simulador"><div class="section-heading"><div><div class="section-tag">06 / ESCENARIOS</div><h2>Si publicamos más,<br>¿qué podría pasar?</h2><p>Prueba un volumen mensual hipotético. Este ejercicio multiplica la frecuencia por las interacciones promedio del periodo: no predice el algoritmo ni garantiza resultados.</p></div></div><div class="card plan"><div class="plan-head"><h3>Tu mesa de planeación</h3><p>Elige cuántas publicaciones haría Capital al mes en la red seleccionada. El cálculo mantiene fija la interacción promedio observada por publicación.</p><div class="plan-control"><label for="planposts">Publicaciones al mes <span id="plan-val">30</span></label><input type="range" id="planposts" min="1" max="90" value="30" step="1"><div class="plan-range"><span>1 post</span><span>90 posts</span></div></div></div><div><div class="plan-results" id="plan-results"></div><p class="plan-foot">* Escenario ilustrativo: publicaciones mensuales × promedio histórico de interacciones por post. No contempla fatiga, cambio creativo, pauta pagada, estacionalidad ni desduplicación.</p></div></div></section>
-<section class="section" id="datos"><div class="section-heading"><div><div class="section-tag">07 / TRANSPARENCIA</div><h2>Todos los datos.<br>Sin letra pequeña.</h2><p>El mismo conjunto que alimenta las visualizaciones. El análisis se limita a lo que contiene el HTML facilitado.</p></div><button class="btn" id="csv2">↓ Descargar CSV</button></div><div class="table-wrap"><table><thead><tr><th>Constructora</th><th>Zona</th><th>Seguidores</th><th>Publicaciones</th><th>Posts/mes</th><th>Interacciones/post</th><th>Q-Index</th><th>Cobertura Q</th></tr></thead><tbody id="table-body"></tbody></table></div><details class="card disclosure" style="margin-top:17px"><summary>Cómo se calcularon los indicadores y qué limitaciones tienen</summary><div id="method"></div></details></section>
+<section class="section" id="datos"><div class="section-heading"><div><div class="section-tag">06 / TRANSPARENCIA</div><h2>Todos los datos.<br>Sin letra pequeña.</h2><p>El mismo conjunto que alimenta las visualizaciones. El análisis se limita a lo que contiene el HTML facilitado.</p></div><button class="btn" id="csv2">↓ Descargar CSV</button></div><div class="table-wrap"><table><thead><tr><th>Constructora</th><th>Zona</th><th>Seguidores</th><th>Publicaciones</th><th>Posts/mes</th><th>Interacciones/post</th><th>Q-Index</th><th>Cobertura Q</th></tr></thead><tbody id="table-body"></tbody></table></div><details class="card disclosure" style="margin-top:17px"><summary>Cómo se calcularon los indicadores y qué limitaciones tienen</summary><div id="method"></div></details></section>
 <footer class="bottom"><span>CAPITAL SOCIAL INTELLIGENCE · 2026<br>Fuente: Fanpage Karma / Archivo HTML entregado · Corte 08.10.2026</span><span>Hecho para entender, comparar y decidir ✦</span></footer>
 </main></div>
 <script src="./data.js"></script>
@@ -213,12 +211,6 @@ function renderStrategies(){
  ];
  $('strategies').innerHTML=ideas.map(function(v){return '<article class="card strategy-card"><div class="seq">'+v[0]+'</div><h3>'+esc(v[1])+'</h3><p>'+esc(v[2])+'</p><div class="action">'+esc(v[3])+'</div></article>';}).join('');
 }
-function renderPlan(){
- var c=capital(),baseline=Number(c['Nº Post Prom. Mensual']),inter=Number(c['Interacción Promedio']),p=state.plan;
- $('plan-val').textContent=fmt(p);
- $('planposts').value=p;
- $('plan-results').innerHTML='<div class="plan-result"><span>Interacciones/mes estimadas</span><strong>'+fmt(p*inter)+'</strong><small>Con el promedio histórico fijo</small></div><div class="plan-result"><span>Variación vs. frecuencia actual</span><strong>'+(p>=baseline?'+':'')+dec((p/baseline-1)*100)+'%</strong><small>Posts actuales: '+dec(baseline)+'/mes</small></div>';
-}
 function renderTable(){
  $('table-body').innerHTML=rows().slice().sort(function(a,b){return b['Interacción Promedio']-a['Interacción Promedio'];}).map(function(d){var coverage=Number(d['% posts evaluados en Q-Index']);return '<tr class="'+(d.Competidor==='Constructora Capital'?'capital':'')+'"><td><strong>'+esc(d.Competidor)+'</strong></td><td>'+esc(zoneFor(d.Competidor))+'</td><td>'+fmt(d.Seguidores)+'</td><td>'+fmt(d['Número de Post'])+'</td><td>'+dec(d['Nº Post Prom. Mensual'])+'</td><td>'+dec(d['Interacción Promedio'])+'</td><td>'+dec(d['Q-Index'])+'</td><td>'+(coverage<100?'<span class="risk">'+pct(coverage)+'</span>':pct(coverage))+'</td></tr>';}).join('');
 }
@@ -227,7 +219,7 @@ function renderMethod(){
 }
 function render(){
  if(!rows().some(function(d){return d.Competidor===state.chosen;}))state.chosen='Constructora Capital';
- renderKpis();renderInsight();renderScatter();renderDetail();renderRanking();renderQ();renderPosts();renderStrategies();renderPlan();renderTable();renderMethod();
+ renderKpis();renderInsight();renderScatter();renderDetail();renderRanking();renderQ();renderPosts();renderStrategies();renderTable();renderMethod();
 }
 function download(){
  var headings=['Ciudad del benchmark','Red','Marca','Seguidores','Publicaciones','Posts/mes','Interacciones totales','Interacciones/post','Tasa interacción %','Q-Index','Cobertura Q %','Top3 % interacciones'];
@@ -236,15 +228,13 @@ function download(){
  var blob=new Blob([csv],{type:'text/csv;charset=utf-8'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='capital-benchmark-ene-oct-2026.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1500);
 }
 $('ciudad').addEventListener('change',function(e){state.city=e.target.value;state.chosen='Constructora Capital';render();});
-$('red').addEventListener('change',function(e){state.net=e.target.value;state.chosen='Constructora Capital';state.plan=Math.round(capital()['Nº Post Prom. Mensual']);render();});
+$('red').addEventListener('change',function(e){state.net=e.target.value;state.chosen='Constructora Capital';render();});
 $('rank-tabs').addEventListener('click',function(e){var button=e.target.closest('[data-metric]');if(button){state.metric=button.getAttribute('data-metric');renderRanking();}});
-$('planposts').addEventListener('input',function(e){state.plan=Number(e.target.value);renderPlan();});
 $('csv').addEventListener('click',download);$('csv2').addEventListener('click',download);
 $('explicar').addEventListener('click',function(){$('comparativo').scrollIntoView({behavior:'smooth'});});
 $('menu').addEventListener('click',function(){document.body.classList.toggle('mobile-open');});
 $('shade').addEventListener('click',function(){document.body.classList.remove('mobile-open');});
 $('nav').querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('mobile-open');$('nav').querySelectorAll('a').forEach(function(b){b.classList.remove('active');});a.classList.add('active');});});
-state.plan=Math.round(capital()['Nº Post Prom. Mensual']);
 render();
 })();
 </script>
