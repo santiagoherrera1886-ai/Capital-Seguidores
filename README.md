@@ -1,36 +1,42 @@
 # Capital Social Intelligence — Benchmark 2026
 
-Dashboard interactivo de benchmarking de redes sociales para **Constructora Capital**.
+Dashboard interactivo y pedagógico de benchmarking de redes sociales para **Constructora Capital**.
 
-## Sitio
-Aplicación estática: abre `index.html` o despliega el directorio raíz en Vercel. No necesita Node, variables de entorno ni base de datos.
+## Qué incluye
 
-## Contenido
-- Panorama de resultados con filtros por Bogotá / Medellín e Instagram / Facebook / TikTok.
-- Comparativo de frecuencia e interacciones por publicación frente a constructoras.
-- Ranking por interacciones, frecuencia, seguidores y Q-Index.
-- Q-Index con presencia, profundidad y cobertura, incluyendo advertencias de comparabilidad.
-- Galería de cinco publicaciones destacadas de Capital por red, con miniaturas originales y enlaces.
-- Interpretaciones e hipótesis accionables para un lector sin experiencia técnica.
-- Simulador aritmético de publicaciones mensuales, explícitamente no predictivo.
-- Datos y exportación CSV.
+- Panorama e insights con filtros por **Bogotá / Medellín** e **Instagram / Facebook / TikTok**.
+- Comparativo de frecuencia, interacciones por publicación y comunidades entre Capital y las constructoras incluidas en el archivo original.
+- Ranking, matriz de desempeño y Q-Index, con advertencias sobre comparabilidad y alcance de los datos.
+- **Galería comparativa de publicaciones reales** con tres vistas: **La competencia / Solo Capital / Todas las marcas**; selector de constructora y acceso a los cinco posts destacados de cada marca.
+- Miniaturas **del HTML original**, recuperadas para Capital y sus competidores (112 de 115 posts tienen imagen en la fuente); enlace al post original, interacciones, fecha y extracto del contenido.
+- Acceso desde la ficha de cada constructora en el plano de desempeño a sus publicaciones.
+- Interpretaciones prácticas, recomendaciones de contenido y exportación CSV.
+- Fuente y metodología visibles; sin confundir interacciones con ventas o leads.
 
-## Fuente
-Importado del HTML de benchmarking adjuntado por el usuario (`dashboard_capital (1) 2.html`). Fuentes indicadas en el original: Fanpage Karma; periodo **1 de enero a 8 de octubre de 2026**. Se conservan los 23 registros, 6 grupos, reglas originales del Q-Index, los posts destacados y las imágenes de Capital. Para mantener el peso del sitio razonable se omiten únicamente las miniaturas embebidas de *otras constructoras*. Todas las métricas y enlaces de publicaciones del archivo original siguen en `data.js`.
+**No incluye simulador de publicaciones**, retirado a solicitud del usuario.
 
-El archivo original repite las cifras de Capital en Bogotá y Medellín; la aplicación **no las suma**. Seguidores son una fotografía del momento de extracción; octubre es parcial. Los ingresos, leads y ventas no están en esta base.
+## Fuente y cobertura
 
-## Diseño
-Inspirado en una experiencia editorial con navegación lateral, tarjetas pedagógicas, visualizaciones interactivas y fotografía de proyectos de Constructora Capital. No es una copia de la web corporativa ni del sitio EAN.
+Importado del HTML adjuntado por el usuario (`dashboard_capital (1) 2.html`). La fuente indicada en el documento es Fanpage Karma, con periodo **1 de enero a 8 de octubre de 2026**.
 
-## Despliegue Vercel
-1. Conecta `santiagoherrera1886-ai/Capital-Seguidores` a `capital-seguidores` en la cuenta/equipo de Vercel correspondiente.
-2. Framework preset: **Other**; root directory: `./`; build command: vacío.
-3. El directorio raíz contiene `index.html` y `data.js`. Despliega la rama `main`.
-4. Las futuras actualizaciones a `main` publicarán automáticamente cuando la integración de GitHub ↔ Vercel esté activa.
+- 23 registros de marca/red social; 6 combinaciones de ciudad/plataforma para la comparación.
+- 115 publicaciones destacadas (cinco por registro) y **112 imágenes originales** disponibles.
+- Tres publicaciones de Marval carecen de imagen en la fuente: se presenta una tarjeta informativa en vez de inventar una miniatura.
+- Capital se compara tanto en Bogotá como Medellín sin duplicar o sumar sus cifras entre ciudades.
+- Octubre está incompleto. El número de seguidores es una fotografía del momento de extracción.
 
-## Estructura
-- `index.html`: diseño, navegación, filtros, indicadores, gráficos y exportación.
-- `data.js`: datos observados extraídos del HTML. No son datos en tiempo real.
+## Estructura y funcionamiento
 
-© 2026. Herramienta analítica ilustrativa para trabajo estratégico.
+- `index.html`: diseño, menús, filtros, indicadores, gráficos, enlaces y exportación.
+- `data.js`: métricas y publicaciones del benchmark; conserva las miniaturas de Capital.
+- `gallery.js`: filtros y renderizado de la galería comparativa, además de carga diferida de fotos.
+- `gallery.css`: diseño editorial responsive de la galería.
+- `media/posts-facebook.json`, `media/posts-instagram.json`, `media/posts-tiktok.json`: imágenes recuperadas del HTML, distribuidas por plataforma para cargar solo las necesarias.
+
+La aplicación es estática. No necesita Node, bases de datos ni variables de entorno. Los datos **no se actualizan automáticamente**: corresponden al corte indicado.
+
+## Vercel
+
+Conecta el repositorio `santiagoherrera1886-ai/Capital-Seguidores` al proyecto `capital-seguidores` en tu equipo de Vercel, con rama de producción `main`, preset **Other**, directorio raíz `./` y build command vacío. Si la integración de GitHub está activa, los commits nuevos en `main` generan despliegues automáticamente.
+
+© 2026. Herramienta de análisis para planeación de marketing digital. Las interacciones no garantizan leads ni ventas.
